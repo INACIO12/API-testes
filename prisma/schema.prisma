@@ -20,6 +20,7 @@ model User {
   Date_of_birth Int
   password String
   posts Post[]
+  Others_contents Others_content[]
 }
 
 model Post {
@@ -31,4 +32,14 @@ model Post {
   published Boolean @default(true)
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
+}
+
+model Others_content{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  img String?
+  authorId User @relation(fields: [authorId_Others], references: [id])
+  authorId_Others Int
+
 }
